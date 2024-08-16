@@ -1,28 +1,38 @@
-import 'dart:convert';
-
-class Animal {
+import "dart:convert";
+class Animal{
   String? name;
   int? age;
 
-  Animal(this.name, this.age);
+  Animal(this.name, this.age) ;
 
-  Animal.fromjson(Map<String, dynamic> json) {
-    name = json['name'];
-    age = json['age'];
+  Animal.formJson(Map<String, dynamic> json) 
+  {
+    json.forEach((k,v)
+    {
+      name = k;
+      age = v;
+    });
   }
 
-  Animal.fromjsonString(String jsonString) {
+  Animal.fromJsonString(String jsonString)
+  {
     Map<String, dynamic> json = jsonDecode(jsonString);
-    name = json['name'];
-    age = json['age'];
+    json.forEach((k,v)
+    {
+      name = k;
+      age = v;
+    });
   }
 
-  String toString() => 'Name $name Age $age';
+  String toString() => 'Name: $name Age: $age';
+
 }
 
 void main(List<String> args) {
-  var cat = Animal('Gui', 2);
-  var dog = Animal.fromjson({'Noppo': 3, 'Hammy': 5, 'Pipo': 6});
-  var parrot = Animal.fromjson({'Jimmy': 1, "Justin": 6});
+  var dang = Animal('Dang', 5) ;
+  var cat = Animal.formJson({'dum':3, 'swad':1, 'somsri':5});
+  var dog = Animal.fromJsonString('{"chang":4, "noi":2 }');
+  print(dang);
   print(cat);
+  print(dog);
 }
